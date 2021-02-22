@@ -13,7 +13,15 @@ namespace TechJobsOO
             nextId++;
         }
 
+        public Location(string value)
+        {
+            Value = value;
+        }
+       
+
         // TODO: Add a second constructor to this class that uses the Location() constructor and sets the value of the value field.
+
+        
 
         public override bool Equals(object obj)
         {
