@@ -4,7 +4,7 @@ using TechJobsOO;
 
 namespace TestJobsTests
 {
-  
+
     [TestClass]
     public class JobTests
     {
@@ -51,33 +51,31 @@ namespace TestJobsTests
             Job testJob2 = new Job("Value", new Employer("test"), new Location("test"), new PositionType("test"), new CoreCompetency("test"));
             Assert.AreNotEqual(testJob1, testJob2);
         }
-        
+
+        [TestMethod]
+        public void TostringHasNewLine()
+        {
+            string hold = testJob1.ToString();
+            Assert.IsTrue(hold.StartsWith("\n"));
+            Assert.IsTrue(hold.EndsWith("\n"));
+        }
 
         [TestMethod]
         public void TestJobsToString()
         {
-
-            Assert.AreEqual(testJob1.ToString().Substring(0, 1), "\n"); 
-            Assert.AreEqual(testJob1.ToString().Substring(testJob1.ToString().Length - 1, 1), "\n");
-            Assert.IsTrue(testJob1.ToString().Contains($"ID: " + testJob1.Id));
-            Assert.IsTrue(testJob1.ToString().Contains($"Name: " + testJob1.Name));
-            Assert.IsTrue(testJob1.ToString().Contains($"Employer: " + testJob1.EmployerName.Value));
-            Assert.IsTrue(testJob1.ToString().Contains($"Location: " + testJob1.EmployerLocation.Value));
-            Assert.IsTrue(testJob1.ToString().Contains($"Position Type: " + testJob1.JobType.Value));
-            Assert.IsTrue(testJob1.ToString().Contains($"Core Competency: " + testJob1.JobCoreCompetency.Value));
-
-
-            Job jobToStringTest2 = new Job("", new Employer(""), desert, qa, persistence);
-            Assert.IsTrue(jobToStringTest2.ToString().Contains($"Name: Data not avaliable"));
-            Assert.IsTrue(jobToStringTest2.ToString().Contains($"Employer: Data not available"));
-
-
-            
-
-
-
+            string expectedOutput = $"\nID: {testJob1.Id}\nName: {testJob1.Name}\nEmployer: {testJob1.EmployerName}\nLocation: {testJob1.EmployerLocation}\nPosition Type: {testJob1.JobType}\nCore Competency: {testJob1.JobCoreCompetency}\n";
+            string actualOutput = testJob1.ToString();
+            Assert.AreEqual(expectedOutput, actualOutput);
         }
 
+        [TestMethod]
+        public void TestJobsDataGone()
+        {
+            Job jobgone = new Job("", new Employer (""), new Location (""), new PositionType (""), new CoreCompetency(""));
+            string nodata = $"\nID: {jobgone.Id}\nName: Data not available\nEmployer: Data not available\nLocation: Data not available\nPosition Type: Data not available\nCore Competency: Data not available\n";
+            string actualdata = jobgone.ToString();
+            Assert.AreEqual(nodata, actualdata);
+        }
     }
 
 

@@ -21,13 +21,67 @@ namespace TechJobsOO
             nextId++;
         }
 
-        public Job(string name, Employer empname, Location emploc, PositionType pt, CoreCompetency cc)
+        public Job(string name, Employer empname, Location emploc, PositionType pt, CoreCompetency cc) : this()
         {
             Name = name;
             EmployerName = empname;
             EmployerLocation = emploc;
             JobType = pt;
             JobCoreCompetency = cc;
+        }
+
+        public override string ToString()
+        {
+            
+            string output = "\n";
+
+            output += $"ID: {this.Id}\n";
+
+            if (string.IsNullOrEmpty(this.Name))
+            {
+                output += "Name: Data not available\n";
+            }
+            else
+            {
+                output += $"Name: {this.Name}\n";
+            }
+
+            if (string.IsNullOrEmpty(this.EmployerName.Value))
+            {
+                output += "Employer: Data not available\n";
+            }
+            else
+            {
+                output += $"Employer: {this.EmployerName}\n";
+            }
+
+            if (string.IsNullOrEmpty(this.EmployerLocation.Value))
+            {
+                output += "Location: Data not available\n";
+            }
+            else
+            {
+                output += $"Location: {this.EmployerLocation}\n";
+            }
+
+            if (string.IsNullOrEmpty(this.JobType.Value))
+            {
+                output += "Position Type: Data not available\n";
+            }
+            else
+            {
+                output += $"Position Type: {this.JobType}\n";
+            }
+
+            if (string.IsNullOrEmpty(this.JobCoreCompetency.Value))
+            {
+                output += "Core Competency: Data not available\n";
+            }
+            else
+            {
+                output += $"Core Competency: {this.JobCoreCompetency}\n";
+            }
+            return output;
         }
 
         public override bool Equals(object obj)
@@ -45,6 +99,6 @@ namespace TechJobsOO
         {
             return HashCode.Combine(Id, Name, EmployerName, EmployerLocation, JobType, JobCoreCompetency);
         }
-        // TODO: Generate Equals() and GetHashCode() methods.
+        
     }
 }
